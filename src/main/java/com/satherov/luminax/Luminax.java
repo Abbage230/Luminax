@@ -30,6 +30,13 @@ public class Luminax
         LuminaxRegistry.CREATIVE_TABS.register(modEventBus);
 
         modContainer.registerConfig(ModConfig.Type.CLIENT, LuminaxConfig.SPEC);
-        if(FMLEnvironment.dist.isClient()) modContainer.registerExtensionPoint(IConfigScreenFactory.class, ConfigurationScreen::new);
+        if(FMLEnvironment.dist.isClient()) Client.register(modContainer);
+    }
+
+    static class Client
+    {
+        public static void register(ModContainer modContainer) {
+            modContainer.registerExtensionPoint(IConfigScreenFactory.class, ConfigurationScreen::new);
+        }
     }
 }
