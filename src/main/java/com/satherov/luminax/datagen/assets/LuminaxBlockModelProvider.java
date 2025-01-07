@@ -1,7 +1,8 @@
 package com.satherov.luminax.datagen.assets;
 
 import com.satherov.luminax.Luminax;
-import com.satherov.luminax.content.SetHelper;
+import com.satherov.luminax.content.BlockSet;
+
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.*;
@@ -17,7 +18,7 @@ public class LuminaxBlockModelProvider extends BlockModelProvider {
 
     @Override
     protected void registerModels() {
-        SetHelper.apply(set -> {
+        BlockSet.apply(set -> {
             blockModel(set.BLOCK);
             slabModel(set.SLAB, set.BLOCK);
             stairModel(set.STAIRS, set.BLOCK);

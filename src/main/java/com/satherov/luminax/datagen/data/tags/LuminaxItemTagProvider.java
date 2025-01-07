@@ -1,7 +1,8 @@
 package com.satherov.luminax.datagen.data.tags;
 
+import com.satherov.luminax.content.BlockSet;
 import com.satherov.luminax.content.LuminaxRegistry;
-import com.satherov.luminax.content.SetHelper;
+
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.ItemTagsProvider;
@@ -18,7 +19,7 @@ public class LuminaxItemTagProvider extends ItemTagsProvider {
 
     @Override
     protected void addTags(HolderLookup.Provider provider) {
-        SetHelper.apply(set -> {
+        BlockSet.apply(set -> {
             tag(ItemTags.SLABS).add(set.SLAB.get().asItem());
             tag(ItemTags.STAIRS).add(set.STAIRS.get().asItem());
             tag(ItemTags.WALLS).add(set.WALL.get().asItem());

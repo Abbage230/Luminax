@@ -7,6 +7,7 @@ import net.neoforged.neoforge.registries.DeferredHolder;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Consumer;
 import java.util.function.Supplier;
 
 public class BlockSet {
@@ -51,6 +52,10 @@ public class BlockSet {
         DIM_WALL = register(String.format("dim_%s_wall", name), () -> new WallBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE_BRICK_WALL)), dyenamic);
         DIM_PRESSURE_PLATE = register(String.format("dim_%s_pressure_plate", name), () -> new PressurePlateBlock(BlockSetType.STONE, BlockBehaviour.Properties.ofFullCopy(Blocks.STONE_PRESSURE_PLATE)), dyenamic);
         DIM_BUTTON = register(String.format("dim_%s_button", name), () -> new ButtonBlock(BlockSetType.STONE, 20, BlockBehaviour.Properties.ofFullCopy(Blocks.STONE_BUTTON)), dyenamic);
+    }
+
+    public static void apply(Consumer<BlockSet> consumer) {
+        getSets().forEach(consumer);
     }
 
     private static <T extends Block> DeferredHolder<Block, T> register (String name, Supplier<T> properties, boolean dyenamic) {

@@ -1,8 +1,9 @@
 package com.satherov.luminax.datagen.data.tags;
 
 import com.satherov.luminax.Luminax;
+import com.satherov.luminax.content.BlockSet;
 import com.satherov.luminax.content.LuminaxRegistry;
-import com.satherov.luminax.content.SetHelper;
+
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.tags.BlockTags;
@@ -24,7 +25,7 @@ public class LuminaxBlockTagProvider extends BlockTagsProvider {
         LuminaxRegistry.BLOCKS.getEntries().forEach( block -> tag(BlockTags.MINEABLE_WITH_PICKAXE).add(block.get()));
         LuminaxRegistry.DYENAMIC_BLOCKS.getEntries().forEach( block -> tag(BlockTags.MINEABLE_WITH_PICKAXE).add(block.get()));
 
-        SetHelper.apply( set -> {
+        BlockSet.apply(set -> {
             tag(BlockTags.SLABS).add(set.SLAB.get()).add(set.DIM_SLAB.get());
             tag(BlockTags.STAIRS).add(set.STAIRS.get()).add(set.DIM_STAIRS.get());
             tag(BlockTags.WALLS).add(set.WALL.get()).add(set.DIM_WALL.get());

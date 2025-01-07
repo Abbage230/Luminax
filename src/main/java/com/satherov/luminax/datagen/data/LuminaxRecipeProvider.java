@@ -1,7 +1,8 @@
 package com.satherov.luminax.datagen.data;
 
+import com.satherov.luminax.content.BlockSet;
 import com.satherov.luminax.content.LuminaxRegistry;
-import com.satherov.luminax.content.SetHelper;
+
 import cy.jdkdigital.dyenamics.core.util.DyenamicDyeColor;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
@@ -133,7 +134,7 @@ public class LuminaxRecipeProvider extends RecipeProvider implements IConditionB
 
     @Override
     protected void buildRecipes(RecipeOutput recipeOutput) {
-        SetHelper.apply(set -> {
+        BlockSet.apply(set -> {
 
             if (set.dyenamic) {
                 tint(LuminaxRegistry.ITEMTAG_BLOCK, colors.get(set.BLOCK.get().asItem()), set.BLOCK.get().asItem()).save(recipeOutput.withConditions(new ModLoadedCondition("dyenamics")), "tint_" + set.BLOCK.getId().getPath());

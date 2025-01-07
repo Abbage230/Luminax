@@ -33,8 +33,8 @@ public class Luminax
         if(FMLEnvironment.dist.isClient()) Client.register(modContainer);
     }
 
-    static class Client
-    {
+    static class Client {
+
         public static void register(ModContainer modContainer) {
             modContainer.registerExtensionPoint(IConfigScreenFactory.class, ConfigurationScreen::new);
         }
