@@ -1,7 +1,8 @@
 package com.satherov.luminax.datagen.assets;
 
 import com.satherov.luminax.Luminax;
-import com.satherov.luminax.content.SetHelper;
+import com.satherov.luminax.content.BlockSet;
+
 import net.minecraft.core.Direction;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.resources.ResourceLocation;
@@ -24,7 +25,7 @@ public class LuminaxBlockStateProvider extends BlockStateProvider {
 
     @Override
     protected void registerStatesAndModels() {
-        SetHelper.apply( set -> {
+        BlockSet.apply(set -> {
             simpleBlock(set.BLOCK.get(), getExistingFile(set.BLOCK.getId().getPath()));
             slabBlock(set.SLAB, set.BLOCK);
             stairsBlock(set.STAIRS);

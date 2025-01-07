@@ -9,6 +9,7 @@ import net.minecraftforge.registries.RegistryObject;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Consumer;
 import java.util.function.Supplier;
 
 public class BlockSet {
@@ -52,6 +53,10 @@ public class BlockSet {
         DIM_PRESSURE_PLATE = register(String.format("dim_%s_pressure_plate", name), () -> new PressurePlateBlock(PressurePlateBlock.Sensitivity.EVERYTHING, BlockBehaviour.Properties.copy(Blocks.STONE_PRESSURE_PLATE), BlockSetType.STONE));
         DIM_BUTTON = register(String.format("dim_%s_button", name), () -> new ButtonBlock(BlockBehaviour.Properties.copy(Blocks.STONE_BUTTON), BlockSetType.STONE, 20, true));
 
+    }
+
+    public static void apply(Consumer<BlockSet> consumer) {
+        getSets().forEach(consumer);
     }
 
     private static <T extends Block> RegistryObject<T> register (String name, Supplier<T> properties) {

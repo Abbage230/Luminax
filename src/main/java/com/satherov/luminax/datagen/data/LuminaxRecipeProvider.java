@@ -1,7 +1,8 @@
 package com.satherov.luminax.datagen.data;
 
+import com.satherov.luminax.content.BlockSet;
 import com.satherov.luminax.content.LuminaxRegistry;
-import com.satherov.luminax.content.SetHelper;
+
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.*;
 import net.minecraft.tags.TagKey;
@@ -111,7 +112,7 @@ public class LuminaxRecipeProvider extends RecipeProvider {
 
     @Override
     protected void buildRecipes(Consumer<FinishedRecipe> recipeOutput) {
-        SetHelper.apply(set -> {
+        BlockSet.apply(set -> {
             tint(LuminaxRegistry.ITEMTAG_BLOCK, colors.get(set.BLOCK.get().asItem()), set.BLOCK.get().asItem()).save(recipeOutput, "tint_" + set.BLOCK.getId().getPath());
             block(colors.get(set.BLOCK.get().asItem()), set.BLOCK.get().asItem()).save(recipeOutput);
             slab(set.BLOCK.get().asItem(), set.SLAB.get().asItem()).save(recipeOutput);
