@@ -137,7 +137,3 @@ idea {
         downloadJavadoc = true
     }
 }
-
-tasks.matching { it.name == "build" || it.name == "runData" }.configureEach {
-    dependsOn 'spotlessApply'
-}
