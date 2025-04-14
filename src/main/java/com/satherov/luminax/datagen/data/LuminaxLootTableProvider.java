@@ -23,17 +23,9 @@ public class LuminaxLootTableProvider extends VanillaBlockLoot {
 
     @Override
     protected @NotNull Iterable<Block> getKnownBlocks() {
-        List<Block> list1 = LuminaxRegistry.BLOCKS.getEntries()
+        return LuminaxRegistry.BLOCKS.getEntries()
                 .stream()
                 .map(DeferredHolder::get)
                 .collect(Collectors.toList());
-
-        List<Block> list2 = LuminaxRegistry.DYENAMIC_BLOCKS.getEntries()
-                .stream()
-                .map(DeferredHolder::get)
-                .collect(Collectors.toList());
-
-        list1.addAll(list2);
-        return list1;
     }
 }

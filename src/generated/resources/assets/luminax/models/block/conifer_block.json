@@ -1,6 +1,0 @@
-{
-  "parent": "luminax:block/no_shade_block",
-  "textures": {
-    "texture": "luminax:block/conifer_block"
-  }
-}

@@ -1,5 +1,7 @@
 package com.satherov.luminax.datagen.data.tags;
 
+import net.neoforged.neoforge.common.Tags;
+
 import com.satherov.luminax.content.BlockSet;
 import com.satherov.luminax.content.LuminaxRegistry;
 
@@ -19,12 +21,23 @@ public class LuminaxItemTagProvider extends ItemTagsProvider {
 
     @Override
     protected void addTags(HolderLookup.Provider provider) {
-        BlockSet.apply(set -> {
-            tag(ItemTags.SLABS).add(set.SLAB.get().asItem());
-            tag(ItemTags.STAIRS).add(set.STAIRS.get().asItem());
-            tag(ItemTags.WALLS).add(set.WALL.get().asItem());
-            tag(ItemTags.BUTTONS).add(set.BUTTON.get().asItem());
+        tag(ItemTags.SLABS)
+                .addTag(LuminaxRegistry.ITEMTAG_SLAB)
+                .addTag(LuminaxRegistry.ITEMTAG_DIM_SLAB);
 
+        tag(ItemTags.STAIRS)
+                .addTag(LuminaxRegistry.ITEMTAG_STAIRS)
+                .addTag(LuminaxRegistry.ITEMTAG_DIM_STAIRS);
+
+        tag(ItemTags.WALLS)
+                .addTag(LuminaxRegistry.ITEMTAG_WALL)
+                .addTag(LuminaxRegistry.ITEMTAG_DIM_WALL);
+
+        tag(ItemTags.BUTTONS)
+                .addTag(LuminaxRegistry.ITEMTAG_BUTTON)
+                .addTag(LuminaxRegistry.ITEMTAG_DIM_BUTTON);
+
+        BlockSet.apply(set -> {
             tag(LuminaxRegistry.ITEMTAG_BLOCK).add(set.BLOCK.get().asItem());
             tag(LuminaxRegistry.ITEMTAG_DIM_BLOCK).add(set.DIM_BLOCK.get().asItem());
             tag(LuminaxRegistry.ITEMTAG_SLAB).add(set.SLAB.get().asItem());

@@ -2,7 +2,7 @@ plugins {
     id 'idea'
     id 'java-library'
     id 'maven-publish'
-    id 'net.neoforged.moddev' version '1.0.23'
+    id 'net.neoforged.moddev' version '2.0.80'
 }
 
 tasks.named('wrapper', Wrapper).configure {
@@ -86,7 +86,6 @@ configurations {
 
 dependencies {
     implementation "curse.maven:${jei}"
-    implementation "curse.maven:${dyenamics}"
 }
 
 tasks.withType(ProcessResources).configureEach {
@@ -108,6 +107,9 @@ tasks.withType(ProcessResources).configureEach {
     filesMatching(['META-INF/neoforge.mods.toml']) {
         expand replaceProperties
     }
+
+    from "src/main/resources"
+    into "build/generated/sources/modMetadata"
 
     duplicatesStrategy = 'exclude'
 }
@@ -134,4 +136,8 @@ idea {
         downloadSources = true
         downloadJavadoc = true
     }
+}
+
+tasks.matching { it.name == "build" || it.name == "runData" }.configureEach {
+    dependsOn 'spotlessApply'
 }

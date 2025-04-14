@@ -7,6 +7,8 @@ import com.satherov.luminax.content.LuminaxRegistry;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.tags.BlockTags;
+import net.minecraft.tags.ItemTags;
+
 import net.neoforged.neoforge.common.data.BlockTagsProvider;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import org.jetbrains.annotations.Nullable;
@@ -22,16 +24,35 @@ public class LuminaxBlockTagProvider extends BlockTagsProvider {
     @Override
     protected void addTags(HolderLookup.Provider provider) {
 
-        LuminaxRegistry.BLOCKS.getEntries().forEach( block -> tag(BlockTags.MINEABLE_WITH_PICKAXE).add(block.get()));
-        LuminaxRegistry.DYENAMIC_BLOCKS.getEntries().forEach( block -> tag(BlockTags.MINEABLE_WITH_PICKAXE).add(block.get()));
+        tag(BlockTags.MINEABLE_WITH_PICKAXE)
+                .addTag(LuminaxRegistry.BLOCKTAG_BLOCK)
+                .addTag(LuminaxRegistry.BLOCKTAG_DIM_BLOCK)
+                .addTag(LuminaxRegistry.BLOCKTAG_SLAB)
+                .addTag(LuminaxRegistry.BLOCKTAG_DIM_SLAB)
+                .addTag(LuminaxRegistry.BLOCKTAG_STAIRS)
+                .addTag(LuminaxRegistry.BLOCKTAG_DIM_STAIRS)
+                .addTag(LuminaxRegistry.BLOCKTAG_WALL)
+                .addTag(LuminaxRegistry.BLOCKTAG_DIM_WALL)
+                .addTag(LuminaxRegistry.BLOCKTAG_PRESSURE_PLATE)
+                .addTag(LuminaxRegistry.BLOCKTAG_DIM_PRESSURE_PLATE);
+
+        tag(BlockTags.SLABS)
+                .addTag(LuminaxRegistry.BLOCKTAG_SLAB)
+                .addTag(LuminaxRegistry.BLOCKTAG_DIM_SLAB);
+
+        tag(BlockTags.STAIRS)
+                .addTag(LuminaxRegistry.BLOCKTAG_STAIRS)
+                .addTag(LuminaxRegistry.BLOCKTAG_DIM_STAIRS);
+
+        tag(BlockTags.WALLS)
+                .addTag(LuminaxRegistry.BLOCKTAG_WALL)
+                .addTag(LuminaxRegistry.BLOCKTAG_DIM_WALL);
+
+        tag(BlockTags.BUTTONS)
+                .addTag(LuminaxRegistry.BLOCKTAG_BUTTON)
+                .addTag(LuminaxRegistry.BLOCKTAG_DIM_BUTTON);
 
         BlockSet.apply(set -> {
-            tag(BlockTags.SLABS).add(set.SLAB.get()).add(set.DIM_SLAB.get());
-            tag(BlockTags.STAIRS).add(set.STAIRS.get()).add(set.DIM_STAIRS.get());
-            tag(BlockTags.WALLS).add(set.WALL.get()).add(set.DIM_WALL.get());
-            tag(BlockTags.PRESSURE_PLATES).add(set.PRESSURE_PLATE.get()).add(set.DIM_PRESSURE_PLATE.get());
-            tag(BlockTags.BUTTONS).add(set.BUTTON.get()).add(set.DIM_BUTTON.get());
-
             tag(LuminaxRegistry.BLOCKTAG_BLOCK).add(set.BLOCK.get());
             tag(LuminaxRegistry.BLOCKTAG_DIM_BLOCK).add(set.DIM_BLOCK.get());
             tag(LuminaxRegistry.BLOCKTAG_SLAB).add(set.SLAB.get());
