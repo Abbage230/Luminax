@@ -1,20 +1,20 @@
 {
   "values": [
-    "luminax:white_slab",
-    "luminax:light_gray_slab",
-    "luminax:gray_slab",
-    "luminax:black_slab",
-    "luminax:brown_slab",
-    "luminax:red_slab",
-    "luminax:orange_slab",
-    "luminax:yellow_slab",
-    "luminax:lime_slab",
-    "luminax:green_slab",
-    "luminax:cyan_slab",
-    "luminax:light_blue_slab",
-    "luminax:blue_slab",
-    "luminax:purple_slab",
-    "luminax:magenta_slab",
-    "luminax:pink_slab"
+    "luminax:white_luminax_slab",
+    "luminax:light_gray_luminax_slab",
+    "luminax:gray_luminax_slab",
+    "luminax:black_luminax_slab",
+    "luminax:brown_luminax_slab",
+    "luminax:red_luminax_slab",
+    "luminax:orange_luminax_slab",
+    "luminax:yellow_luminax_slab",
+    "luminax:lime_luminax_slab",
+    "luminax:green_luminax_slab",
+    "luminax:cyan_luminax_slab",
+    "luminax:light_blue_luminax_slab",
+    "luminax:blue_luminax_slab",
+    "luminax:purple_luminax_slab",
+    "luminax:magenta_luminax_slab",
+    "luminax:pink_luminax_slab"
   ]
 }

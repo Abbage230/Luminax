@@ -13,6 +13,8 @@ import net.minecraft.world.level.block.Block;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.RegistryObject;
 
+import java.util.function.Supplier;
+
 public class LuminaxRegistry {
 
 
@@ -23,6 +25,12 @@ public class LuminaxRegistry {
     public static final RegistryObject<CreativeModeTab> CREATIVE_TAB = CREATIVE_TABS.register("creative_tab", () -> CreativeModeTab.builder()
             .title(Component.translatable(String.format("itemGroup.%s", Luminax.MOD_ID)))
             .icon(() -> LuminaxRegistry.WHITE.BLOCK.get().asItem().getDefaultInstance())
+            .displayItems((param, output) -> {
+                ITEMS.getEntries().stream()
+                        .map(Supplier::get)
+                        .map(Item::getDefaultInstance)
+                        .forEach(output::accept);
+            })
             .build()
     );
 

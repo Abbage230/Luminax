@@ -39,19 +39,19 @@ public class BlockSet {
         this.name = name;
         instances.add(this);
 
-        BLOCK = register(String.format("%s_block", name), () -> new Block(BlockBehaviour.Properties.copy(Blocks.STONE).lightLevel((state) -> 15)));
-        STAIRS = register(String.format("%s_stairs", name), () -> new StairBlock(BLOCK.get().defaultBlockState(), BlockBehaviour.Properties.copy(Blocks.STONE_STAIRS).lightLevel((state) -> 15)));
-        SLAB = register(String.format("%s_slab", name), () -> new SlabBlock(BlockBehaviour.Properties.copy(Blocks.STONE_SLAB).lightLevel((state) -> 15)));
-        WALL = register(String.format("%s_wall", name), () -> new WallBlock(BlockBehaviour.Properties.copy(Blocks.STONE_BRICK_WALL).lightLevel((state) -> 15)));
-        PRESSURE_PLATE = register(String.format("%s_pressure_plate", name), () -> new PressurePlateBlock(PressurePlateBlock.Sensitivity.EVERYTHING, BlockBehaviour.Properties.copy(Blocks.STONE_PRESSURE_PLATE).lightLevel((state) -> 15), BlockSetType.STONE));
-        BUTTON = register(String.format("%s_button", name), () -> new ButtonBlock(BlockBehaviour.Properties.copy(Blocks.STONE_BUTTON).lightLevel((state) -> 15), BlockSetType.STONE, 20, true));
+        BLOCK = register(String.format("%s_luminax_block", name), () -> new Block(BlockBehaviour.Properties.copy(Blocks.STONE).lightLevel((state) -> 15)));
+        STAIRS = register(String.format("%s_luminax_stairs", name), () -> new StairBlock(BLOCK.get().defaultBlockState(), BlockBehaviour.Properties.copy(Blocks.STONE_STAIRS).lightLevel((state) -> 15)));
+        SLAB = register(String.format("%s_luminax_slab", name), () -> new SlabBlock(BlockBehaviour.Properties.copy(Blocks.STONE_SLAB).lightLevel((state) -> 15)));
+        WALL = register(String.format("%s_luminax_wall", name), () -> new WallBlock(BlockBehaviour.Properties.copy(Blocks.STONE_BRICK_WALL).lightLevel((state) -> 15)));
+        PRESSURE_PLATE = register(String.format("%s_luminax_pressure_plate", name), () -> new PressurePlateBlock(PressurePlateBlock.Sensitivity.EVERYTHING, BlockBehaviour.Properties.copy(Blocks.STONE_PRESSURE_PLATE).lightLevel((state) -> 15), BlockSetType.STONE));
+        BUTTON = register(String.format("%s_luminax_button", name), () -> new ButtonBlock(BlockBehaviour.Properties.copy(Blocks.STONE_BUTTON).lightLevel((state) -> 15), BlockSetType.STONE, 20, true));
 
-        DIM_BLOCK = register(String.format("dim_%s_block", name), () -> new Block(BlockBehaviour.Properties.copy(Blocks.STONE)));
-        DIM_STAIRS = register(String.format("dim_%s_stairs", name), () -> new StairBlock(BLOCK.get().defaultBlockState(), BlockBehaviour.Properties.copy(Blocks.STONE_STAIRS)));
-        DIM_SLAB = register(String.format("dim_%s_slab", name), () -> new SlabBlock(BlockBehaviour.Properties.copy(Blocks.STONE_SLAB)));
-        DIM_WALL = register(String.format("dim_%s_wall", name), () -> new WallBlock(BlockBehaviour.Properties.copy(Blocks.STONE_BRICK_WALL)));
-        DIM_PRESSURE_PLATE = register(String.format("dim_%s_pressure_plate", name), () -> new PressurePlateBlock(PressurePlateBlock.Sensitivity.EVERYTHING, BlockBehaviour.Properties.copy(Blocks.STONE_PRESSURE_PLATE), BlockSetType.STONE));
-        DIM_BUTTON = register(String.format("dim_%s_button", name), () -> new ButtonBlock(BlockBehaviour.Properties.copy(Blocks.STONE_BUTTON), BlockSetType.STONE, 20, true));
+        DIM_BLOCK = register(String.format("dim_%s_luminax_block", name), () -> new Block(BlockBehaviour.Properties.copy(Blocks.STONE)));
+        DIM_STAIRS = register(String.format("dim_%s_luminax_stairs", name), () -> new StairBlock(BLOCK.get().defaultBlockState(), BlockBehaviour.Properties.copy(Blocks.STONE_STAIRS)));
+        DIM_SLAB = register(String.format("dim_%s_luminax_slab", name), () -> new SlabBlock(BlockBehaviour.Properties.copy(Blocks.STONE_SLAB)));
+        DIM_WALL = register(String.format("dim_%s_luminax_wall", name), () -> new WallBlock(BlockBehaviour.Properties.copy(Blocks.STONE_BRICK_WALL)));
+        DIM_PRESSURE_PLATE = register(String.format("dim_%s_luminax_pressure_plate", name), () -> new PressurePlateBlock(PressurePlateBlock.Sensitivity.EVERYTHING, BlockBehaviour.Properties.copy(Blocks.STONE_PRESSURE_PLATE), BlockSetType.STONE));
+        DIM_BUTTON = register(String.format("dim_%s_luminax_button", name), () -> new ButtonBlock(BlockBehaviour.Properties.copy(Blocks.STONE_BUTTON), BlockSetType.STONE, 20, true));
 
     }
 
