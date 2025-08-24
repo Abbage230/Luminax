@@ -5,7 +5,7 @@
   },
   "elements": [
     {
-      "from": [ 0, 0, 0 ],
+      "from": [ 5, 0, 0 ],
       "to": [ 11, 16, 8 ],
       "shade": false,
       "faces": {
