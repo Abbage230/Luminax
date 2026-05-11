@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "d": "#c:gems/diamond",
+    "g": "luminax:luminax_block",
+    "s": "minecraft:stick"
+  },
+  "pattern": [
+    " gd",
+    " sg",
+    "s  "
+  ],
+  "result": {
+    "id": "luminax:luminax_wand"
+  }
+}

@@ -1,6 +1,5 @@
 {
   "values": [
-    "#luminax:walls",
-    "#luminax:dim_walls"
+    "luminax:luminax_wall"
   ]
 }

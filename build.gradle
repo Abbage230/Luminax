@@ -77,11 +77,17 @@ configurations {
 repositories {
     mavenLocal()
     mavenCentral()
+    maven {
+        url "https://cursemaven.com"
+        content {
+            includeGroup "curse.maven"
+        }
+    }
     maven { // JEI
         url "https://maven.blamejared.com/"
     }
-    maven { // Sathlib
-        url 'https://maven.satherov.dev/releases'
+    maven { // Jade
+        url "https://api.modrinth.com/maven"
     }
 }
 
@@ -90,6 +96,10 @@ dependencies {
 
     compileOnly("mezz.jei:jei-26.1.2-neoforge-api:${jei_version}")
     runtimeOnly("mezz.jei:jei-26.1.2-neoforge:${jei_version}")
+
+    implementation "maven.modrinth:jade:${jade_version}"
+    implementation "curse.maven:framedblocks-441647:${framed_blocks_version}"
+
 }
 
 var generateModMetadata = tasks.register("generateModMetadata", ProcessResources) {

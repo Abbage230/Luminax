@@ -1,6 +1,0 @@
-{
-  "parent": "luminax:block/no_shade_wall_post",
-  "textures": {
-    "texture": "luminax:block/light_gray_luminax_block"
-  }
-}

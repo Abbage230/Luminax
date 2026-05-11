@@ -1,14 +1,10 @@
 {
   "values": [
-    "#luminax:blocks",
-    "#luminax:dim_blocks",
-    "#luminax:slabs",
-    "#luminax:dim_slabs",
-    "#luminax:stairs",
-    "#luminax:dim_stairs",
-    "#luminax:walls",
-    "#luminax:dim_walls",
-    "#luminax:pressure_plates",
-    "#luminax:dim_pressure_plates"
+    "luminax:luminax_block",
+    "luminax:luminax_stair",
+    "luminax:luminax_slab",
+    "luminax:luminax_wall",
+    "luminax:luminax_pressure_plate",
+    "luminax:luminax_button"
   ]
 }

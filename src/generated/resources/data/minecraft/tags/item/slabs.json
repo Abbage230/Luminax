@@ -1,6 +1,5 @@
 {
   "values": [
-    "#luminax:slabs",
-    "#luminax:dim_slabs"
+    "luminax:luminax_slab"
   ]
 }

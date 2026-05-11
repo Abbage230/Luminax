@@ -1,6 +1,5 @@
 {
   "values": [
-    "#luminax:buttons",
-    "#luminax:dim_buttons"
+    "luminax:luminax_button"
   ]
 }

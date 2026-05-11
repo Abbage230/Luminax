@@ -1,0 +1,74 @@
+{
+  "parent": "minecraft:block/button_pressed",
+  "ambientocclusion": false,
+  "elements": [
+    {
+      "faces": {
+        "down": {
+          "cullface": "down",
+          "texture": "#texture",
+          "tintindex": 0
+        },
+        "east": {
+          "texture": "#texture",
+          "tintindex": 0,
+          "uv": [
+            6.0,
+            14.0,
+            10.0,
+            15.0
+          ]
+        },
+        "north": {
+          "texture": "#texture",
+          "tintindex": 0,
+          "uv": [
+            5.0,
+            14.0,
+            11.0,
+            15.0
+          ]
+        },
+        "south": {
+          "texture": "#texture",
+          "tintindex": 0,
+          "uv": [
+            5.0,
+            14.0,
+            11.0,
+            15.0
+          ]
+        },
+        "up": {
+          "texture": "#texture",
+          "tintindex": 0
+        },
+        "west": {
+          "texture": "#texture",
+          "tintindex": 0,
+          "uv": [
+            6.0,
+            14.0,
+            10.0,
+            15.0
+          ]
+        }
+      },
+      "from": [
+        5,
+        0,
+        6
+      ],
+      "light_emission": 15,
+      "shade": false,
+      "to": [
+        11,
+        1.02,
+        10
+      ]
+    }
+  ],
+  "textures": {
+    "texture": "luminax:block/luminax_block"
+  }
+}

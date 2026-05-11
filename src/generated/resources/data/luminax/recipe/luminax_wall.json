@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "a": "luminax:luminax_block"
+  },
+  "pattern": [
+    "aaa",
+    "aaa"
+  ],
+  "result": {
+    "count": 6,
+    "id": "luminax:luminax_wall"
+  }
+}

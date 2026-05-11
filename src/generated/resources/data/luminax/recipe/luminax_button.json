@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    "luminax:luminax_pressure_plate"
+  ],
+  "result": {
+    "id": "luminax:luminax_button"
+  }
+}

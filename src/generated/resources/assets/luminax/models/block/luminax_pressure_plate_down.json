@@ -1,0 +1,74 @@
+{
+  "parent": "minecraft:block/pressure_plate_down",
+  "ambientocclusion": false,
+  "elements": [
+    {
+      "faces": {
+        "down": {
+          "cullface": "down",
+          "texture": "#texture",
+          "tintindex": 0
+        },
+        "east": {
+          "texture": "#texture",
+          "tintindex": 0,
+          "uv": [
+            1.0,
+            15.0,
+            15.0,
+            15.5
+          ]
+        },
+        "north": {
+          "texture": "#texture",
+          "tintindex": 0,
+          "uv": [
+            1.0,
+            15.0,
+            15.0,
+            15.5
+          ]
+        },
+        "south": {
+          "texture": "#texture",
+          "tintindex": 0,
+          "uv": [
+            1.0,
+            15.0,
+            15.0,
+            15.5
+          ]
+        },
+        "up": {
+          "texture": "#texture",
+          "tintindex": 0
+        },
+        "west": {
+          "texture": "#texture",
+          "tintindex": 0,
+          "uv": [
+            1.0,
+            15.0,
+            15.0,
+            15.5
+          ]
+        }
+      },
+      "from": [
+        1,
+        0,
+        1
+      ],
+      "light_emission": 15,
+      "shade": false,
+      "to": [
+        15,
+        0.5,
+        15
+      ]
+    }
+  ],
+  "textures": {
+    "texture": "luminax:block/luminax_block"
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "a": "#c:stones",
+    "b": "#c:dyes/white",
+    "g": "#c:dusts/glowstone"
+  },
+  "pattern": [
+    "aga",
+    "gbg",
+    "aga"
+  ],
+  "result": {
+    "count": 4,
+    "id": "luminax:luminax_block"
+  }
+}

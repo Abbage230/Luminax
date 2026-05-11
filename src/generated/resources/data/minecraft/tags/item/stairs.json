@@ -1,6 +1,5 @@
 {
   "values": [
-    "#luminax:stairs",
-    "#luminax:dim_stairs"
+    "luminax:luminax_stair"
   ]
 }

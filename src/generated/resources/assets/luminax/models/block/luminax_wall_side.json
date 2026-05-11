@@ -1,0 +1,47 @@
+{
+  "parent": "minecraft:block/template_wall_side",
+  "ambientocclusion": false,
+  "elements": [
+    {
+      "faces": {
+        "down": {
+          "cullface": "down",
+          "texture": "#wall",
+          "tintindex": 0
+        },
+        "east": {
+          "texture": "#wall",
+          "tintindex": 0
+        },
+        "north": {
+          "cullface": "north",
+          "texture": "#wall",
+          "tintindex": 0
+        },
+        "up": {
+          "texture": "#wall",
+          "tintindex": 0
+        },
+        "west": {
+          "texture": "#wall",
+          "tintindex": 0
+        }
+      },
+      "from": [
+        5,
+        0,
+        0
+      ],
+      "light_emission": 15,
+      "shade": false,
+      "to": [
+        11,
+        14,
+        8
+      ]
+    }
+  ],
+  "textures": {
+    "wall": "luminax:block/luminax_block"
+  }
+}
