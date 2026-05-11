@@ -1,12 +1,12 @@
 license="${mod_license}"
-#issueTrackerURL="https://github.com/SathLabs/Luminax/issues"
+issueTrackerURL="https://github.com/SathLabs/Luminax/issues"
 
 [[mods]]
 modId="${mod_id}"
 version="${mod_version}"
 displayName="${mod_name}"
 displayURL="https://www.curseforge.com/minecraft/mc-mods/crystalix"
-#logoFile="examplemod.png"
+logoFile="luminax.png"
 authors="Satherov"
 description='''
 Adds simple glowing blocks to the game.

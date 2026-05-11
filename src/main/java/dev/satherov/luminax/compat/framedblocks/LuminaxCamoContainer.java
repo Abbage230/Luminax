@@ -12,7 +12,7 @@ import io.github.xfacthd.framedblocks.api.camo.block.AbstractBlockCamoContainerF
 import io.github.xfacthd.framedblocks.api.camo.block.BlockCamoContent;
 
 @NothingNull
-public class LuminaxCamoContainer extends AbstractBlockCamoContainer<LuminaxCamoContainer>  {
+public class LuminaxCamoContainer extends AbstractBlockCamoContainer<LuminaxCamoContainer> {
     
     private final @Getter int color;
     private final @Getter boolean light;

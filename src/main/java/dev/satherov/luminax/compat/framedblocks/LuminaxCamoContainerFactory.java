@@ -54,13 +54,18 @@ public class LuminaxCamoContainerFactory extends AbstractBlockCamoContainerFacto
     
     private static final int DEFAULT_TINT = 0xFFFFFF;
     
+    private static LuminaxCamoContainer createContainer(BlockState camoState, ItemStack stack) {
+        return new LuminaxCamoContainer(camoState, stack.getOrDefault(LXRegistry.COLOR, LuminaxCamoContainerFactory.DEFAULT_TINT), stack.getOrDefault(LXRegistry.GLOWING, false));
+    }
+    
+    private static BlockState applyWandModifiers(BlockState state, ItemStack wand) {
+        if (!(state.getBlock() instanceof LuminaxBlock)) return state;
+        return LXProperties.CONTAINER.applyToBlock(wand, state).state();
+    }
+    
     @Override
     protected LuminaxCamoContainer createContainer(BlockState camoState, Level level, BlockPos blockPos, Player player, ItemAccess itemAccess) {
         return LuminaxCamoContainerFactory.createContainer(camoState, LuminaxWandItem.find(player));
-    }
-    
-    private static LuminaxCamoContainer createContainer(BlockState camoState, ItemStack stack) {
-        return new LuminaxCamoContainer(camoState, stack.getOrDefault(LXRegistry.COLOR, LuminaxCamoContainerFactory.DEFAULT_TINT), stack.getOrDefault(LXRegistry.GLOWING, false));
     }
     
     @Override
@@ -69,11 +74,6 @@ public class LuminaxCamoContainerFactory extends AbstractBlockCamoContainerFacto
             return LuminaxCamoContainerFactory.applyWandModifiers(item.getBlock().defaultBlockState(), LuminaxWandItem.find(player));
         }
         return null;
-    }
-    
-    private static BlockState applyWandModifiers(BlockState state, ItemStack wand) {
-        if (!(state.getBlock() instanceof LuminaxBlock)) return state;
-        return LXProperties.CONTAINER.applyToBlock(wand, state).state();
     }
     
     @Override

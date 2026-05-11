@@ -6,6 +6,10 @@ import dev.satherov.sathlib.core.annotations.NothingNull;
 import dev.satherov.sathlib.data.model.SLBlockModelGenerators;
 import dev.satherov.sathlib.data.model.SLModelProvider;
 
+import net.neoforged.neoforge.client.model.generators.template.ElementBuilder;
+import net.neoforged.neoforge.client.model.generators.template.ExtendedModelTemplate;
+import net.neoforged.neoforge.client.model.generators.template.ExtendedModelTemplateBuilder;
+
 import net.minecraft.client.data.models.ItemModelGenerators;
 import net.minecraft.client.data.models.model.ItemModelUtils;
 import net.minecraft.client.data.models.model.ModelLocationUtils;
@@ -18,15 +22,12 @@ import net.minecraft.core.Direction;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.Identifier;
 import net.minecraft.world.level.block.Block;
-import net.neoforged.neoforge.client.model.generators.template.ElementBuilder;
-import net.neoforged.neoforge.client.model.generators.template.ExtendedModelTemplate;
-import net.neoforged.neoforge.client.model.generators.template.ExtendedModelTemplateBuilder;
 
 import java.util.function.Consumer;
 
 @NothingNull
 public class LXModelProvider extends SLModelProvider {
-
+    
     public static final TexturedModel.Provider CUBE = LXModelProvider.createProvider(ModelTemplates.CUBE_ALL, LXModelProvider::buildCube);
     public static final TexturedModel.Provider SLAB = LXModelProvider.createProvider(ModelTemplates.SLAB_BOTTOM, LXModelProvider::buildSlab);
     public static final TexturedModel.Provider SLAB_TOP = LXModelProvider.createProvider(ModelTemplates.SLAB_TOP, LXModelProvider::buildSlabTop);
@@ -42,32 +43,21 @@ public class LXModelProvider extends SLModelProvider {
     public static final TexturedModel.Provider WALL_SIDE = LXModelProvider.createProvider(ModelTemplates.WALL_LOW_SIDE, LXModelProvider::buildWallSide);
     public static final TexturedModel.Provider WALL_SIDE_TALL = LXModelProvider.createProvider(ModelTemplates.WALL_TALL_SIDE, LXModelProvider::buildTallWallSide);
     public static final TexturedModel.Provider WALL_INVENTORY = LXModelProvider.createProvider(ModelTemplates.WALL_INVENTORY, LXModelProvider::buildWallInventory);
-
+    
     public LXModelProvider(PackOutput output) {
         super(output, Luminax.MOD_ID);
     }
-
-    @Override
-    protected void registerModels(SLBlockModelGenerators blocks, ItemModelGenerators items) {
-        this.generateCube(blocks, LXRegistry.BLOCK.get());
-        this.generateSlab(blocks, LXRegistry.SLAB.get(), LXRegistry.BLOCK.get());
-        this.generateStairs(blocks, LXRegistry.STAIRS.get());
-        this.generatePressurePlate(blocks, LXRegistry.PRESSURE_PLATE.get());
-        this.generateButton(blocks, LXRegistry.BUTTON.get());
-        this.generateWall(blocks, LXRegistry.WALL.get());
-        items.generateFlatItem(LXRegistry.LUMINAX_WAND.get(), ModelTemplates.FLAT_ITEM);
-    }
-
+    
     private static TexturedModel.Provider createProvider(ModelTemplate template, Consumer<ExtendedModelTemplateBuilder> geometry) {
-        return TexturedModel.createDefault(block -> TextureMapping.cube(LXRegistry.BLOCK.get()), LXModelProvider.extend(template, geometry));
+        return TexturedModel.createDefault(_ -> TextureMapping.cube(LXRegistry.BLOCK.get()), LXModelProvider.extend(template, geometry));
     }
-
+    
     private static ExtendedModelTemplate extend(ModelTemplate template, Consumer<ExtendedModelTemplateBuilder> geometry) {
         ExtendedModelTemplateBuilder builder = template.extend().ambientOcclusion(false);
         geometry.accept(builder);
         return builder.build();
     }
-
+    
     private static void buildCube(ExtendedModelTemplateBuilder builder) {
         LXModelProvider.addElement(builder, 0.0F, 0.0F, 0.0F, 16.0F, 16.0F, 16.0F, element -> {
             LXModelProvider.addFace(element, Direction.DOWN, TextureSlot.ALL, Direction.DOWN);
@@ -78,7 +68,7 @@ public class LXModelProvider extends SLModelProvider {
             LXModelProvider.addFace(element, Direction.EAST, TextureSlot.ALL, Direction.EAST);
         });
     }
-
+    
     private static void buildSlab(ExtendedModelTemplateBuilder builder) {
         LXModelProvider.addElement(builder, 0.0F, 0.0F, 0.0F, 16.0F, 8.0F, 16.0F, element -> {
             LXModelProvider.addFace(element, Direction.DOWN, TextureSlot.BOTTOM, Direction.DOWN, 0.0F, 0.0F, 16.0F, 16.0F);
@@ -89,7 +79,7 @@ public class LXModelProvider extends SLModelProvider {
             LXModelProvider.addFace(element, Direction.EAST, TextureSlot.SIDE, Direction.EAST, 0.0F, 8.0F, 16.0F, 16.0F);
         });
     }
-
+    
     private static void buildSlabTop(ExtendedModelTemplateBuilder builder) {
         LXModelProvider.addElement(builder, 0.0F, 8.0F, 0.0F, 16.0F, 16.0F, 16.0F, element -> {
             LXModelProvider.addFace(element, Direction.DOWN, TextureSlot.BOTTOM, 0.0F, 0.0F, 16.0F, 16.0F);
@@ -100,7 +90,7 @@ public class LXModelProvider extends SLModelProvider {
             LXModelProvider.addFace(element, Direction.EAST, TextureSlot.SIDE, Direction.EAST, 0.0F, 0.0F, 16.0F, 8.0F);
         });
     }
-
+    
     private static void buildStairs(ExtendedModelTemplateBuilder builder) {
         LXModelProvider.buildSlab(builder);
         LXModelProvider.addElement(builder, 8.0F, 8.0F, 0.0F, 16.0F, 16.0F, 16.0F, element -> {
@@ -111,7 +101,7 @@ public class LXModelProvider extends SLModelProvider {
             LXModelProvider.addFace(element, Direction.EAST, TextureSlot.SIDE, Direction.EAST, 0.0F, 0.0F, 16.0F, 8.0F);
         });
     }
-
+    
     private static void buildInnerStairs(ExtendedModelTemplateBuilder builder) {
         LXModelProvider.buildStairs(builder);
         LXModelProvider.addElement(builder, 0.0F, 8.0F, 8.0F, 8.0F, 16.0F, 16.0F, element -> {
@@ -121,7 +111,7 @@ public class LXModelProvider extends SLModelProvider {
             LXModelProvider.addFace(element, Direction.WEST, TextureSlot.SIDE, Direction.WEST, 8.0F, 0.0F, 16.0F, 8.0F);
         });
     }
-
+    
     private static void buildOuterStairs(ExtendedModelTemplateBuilder builder) {
         LXModelProvider.buildSlab(builder);
         LXModelProvider.addElement(builder, 8.0F, 8.0F, 8.0F, 16.0F, 16.0F, 16.0F, element -> {
@@ -132,7 +122,7 @@ public class LXModelProvider extends SLModelProvider {
             LXModelProvider.addFace(element, Direction.EAST, TextureSlot.SIDE, Direction.EAST, 0.0F, 0.0F, 8.0F, 8.0F);
         });
     }
-
+    
     private static void buildButton(ExtendedModelTemplateBuilder builder) {
         LXModelProvider.addElement(builder, 5.0F, 0.0F, 6.0F, 11.0F, 2.0F, 10.0F, element -> {
             LXModelProvider.addFace(element, Direction.DOWN, TextureSlot.TEXTURE, Direction.DOWN, 5.0F, 6.0F, 11.0F, 10.0F);
@@ -143,7 +133,7 @@ public class LXModelProvider extends SLModelProvider {
             LXModelProvider.addFace(element, Direction.EAST, TextureSlot.TEXTURE, 6.0F, 14.0F, 10.0F, 16.0F);
         });
     }
-
+    
     private static void buildPressedButton(ExtendedModelTemplateBuilder builder) {
         LXModelProvider.addElement(builder, 5.0F, 0.0F, 6.0F, 11.0F, 1.02F, 10.0F, element -> {
             LXModelProvider.addFace(element, Direction.DOWN, TextureSlot.TEXTURE, Direction.DOWN, 5.0F, 6.0F, 11.0F, 10.0F);
@@ -154,7 +144,7 @@ public class LXModelProvider extends SLModelProvider {
             LXModelProvider.addFace(element, Direction.EAST, TextureSlot.TEXTURE, 6.0F, 14.0F, 10.0F, 15.0F);
         });
     }
-
+    
     private static void buildButtonInventory(ExtendedModelTemplateBuilder builder) {
         LXModelProvider.addElement(builder, 5.0F, 6.0F, 6.0F, 11.0F, 10.0F, 10.0F, element -> {
             LXModelProvider.addFace(element, Direction.DOWN, TextureSlot.TEXTURE, 5.0F, 6.0F, 11.0F, 10.0F);
@@ -165,7 +155,7 @@ public class LXModelProvider extends SLModelProvider {
             LXModelProvider.addFace(element, Direction.EAST, TextureSlot.TEXTURE, 6.0F, 12.0F, 10.0F, 16.0F);
         });
     }
-
+    
     private static void buildPressurePlate(ExtendedModelTemplateBuilder builder) {
         LXModelProvider.addElement(builder, 1.0F, 0.0F, 1.0F, 15.0F, 1.0F, 15.0F, element -> {
             LXModelProvider.addFace(element, Direction.DOWN, TextureSlot.TEXTURE, Direction.DOWN, 1.0F, 1.0F, 15.0F, 15.0F);
@@ -176,7 +166,7 @@ public class LXModelProvider extends SLModelProvider {
             LXModelProvider.addFace(element, Direction.EAST, TextureSlot.TEXTURE, 1.0F, 15.0F, 15.0F, 16.0F);
         });
     }
-
+    
     private static void buildPressedPressurePlate(ExtendedModelTemplateBuilder builder) {
         LXModelProvider.addElement(builder, 1.0F, 0.0F, 1.0F, 15.0F, 0.5F, 15.0F, element -> {
             LXModelProvider.addFace(element, Direction.DOWN, TextureSlot.TEXTURE, Direction.DOWN, 1.0F, 1.0F, 15.0F, 15.0F);
@@ -187,7 +177,7 @@ public class LXModelProvider extends SLModelProvider {
             LXModelProvider.addFace(element, Direction.EAST, TextureSlot.TEXTURE, 1.0F, 15.0F, 15.0F, 15.5F);
         });
     }
-
+    
     private static void buildWallPost(ExtendedModelTemplateBuilder builder) {
         LXModelProvider.addElement(builder, 4.0F, 0.0F, 4.0F, 12.0F, 16.0F, 12.0F, element -> {
             LXModelProvider.addFace(element, Direction.DOWN, TextureSlot.WALL, Direction.DOWN);
@@ -198,7 +188,7 @@ public class LXModelProvider extends SLModelProvider {
             LXModelProvider.addFace(element, Direction.EAST, TextureSlot.WALL);
         });
     }
-
+    
     private static void buildWallSide(ExtendedModelTemplateBuilder builder) {
         LXModelProvider.addElement(builder, 5.0F, 0.0F, 0.0F, 11.0F, 14.0F, 8.0F, element -> {
             LXModelProvider.addFace(element, Direction.DOWN, TextureSlot.WALL, Direction.DOWN);
@@ -208,7 +198,7 @@ public class LXModelProvider extends SLModelProvider {
             LXModelProvider.addFace(element, Direction.EAST, TextureSlot.WALL);
         });
     }
-
+    
     private static void buildTallWallSide(ExtendedModelTemplateBuilder builder) {
         LXModelProvider.addElement(builder, 5.0F, 0.0F, 0.0F, 11.0F, 16.0F, 8.0F, element -> {
             LXModelProvider.addFace(element, Direction.DOWN, TextureSlot.WALL, Direction.DOWN);
@@ -218,7 +208,7 @@ public class LXModelProvider extends SLModelProvider {
             LXModelProvider.addFace(element, Direction.EAST, TextureSlot.WALL);
         });
     }
-
+    
     private static void buildWallInventory(ExtendedModelTemplateBuilder builder) {
         LXModelProvider.addElement(builder, 4.0F, 0.0F, 4.0F, 12.0F, 16.0F, 12.0F, element -> {
             LXModelProvider.addFace(element, Direction.DOWN, TextureSlot.WALL, Direction.DOWN, 4.0F, 4.0F, 12.0F, 12.0F);
@@ -237,7 +227,7 @@ public class LXModelProvider extends SLModelProvider {
             LXModelProvider.addFace(element, Direction.EAST, TextureSlot.WALL, 0.0F, 3.0F, 16.0F, 16.0F);
         });
     }
-
+    
     private static void addElement(ExtendedModelTemplateBuilder builder, float fromX, float fromY, float fromZ, float toX, float toY, float toZ, Consumer<ElementBuilder> config) {
         builder.element(element -> {
             element.from(fromX, fromY, fromZ)
@@ -247,27 +237,38 @@ public class LXModelProvider extends SLModelProvider {
             config.accept(element);
         });
     }
-
+    
     private static void addFace(ElementBuilder element, Direction direction, TextureSlot texture) {
         element.face(direction, face -> face.texture(texture).tintindex(0));
     }
-
+    
     private static void addFace(ElementBuilder element, Direction direction, TextureSlot texture, Direction cullface) {
         element.face(direction, face -> face.texture(texture).tintindex(0).cullface(cullface));
     }
-
+    
     private static void addFace(ElementBuilder element, Direction direction, TextureSlot texture, float u1, float v1, float u2, float v2) {
         element.face(direction, face -> face.texture(texture).tintindex(0).uvs(u1, v1, u2, v2));
     }
-
+    
     private static void addFace(ElementBuilder element, Direction direction, TextureSlot texture, Direction cullface, float u1, float v1, float u2, float v2) {
         element.face(direction, face -> face.texture(texture).tintindex(0).cullface(cullface).uvs(u1, v1, u2, v2));
     }
-
+    
+    @Override
+    protected void registerModels(SLBlockModelGenerators blocks, ItemModelGenerators items) {
+        this.generateCube(blocks, LXRegistry.BLOCK.get());
+        this.generateSlab(blocks, LXRegistry.SLAB.get(), LXRegistry.BLOCK.get());
+        this.generateStairs(blocks, LXRegistry.STAIRS.get());
+        this.generatePressurePlate(blocks, LXRegistry.PRESSURE_PLATE.get());
+        this.generateButton(blocks, LXRegistry.BUTTON.get());
+        this.generateWall(blocks, LXRegistry.WALL.get());
+        items.generateFlatItem(LXRegistry.LUMINAX_WAND.get(), ModelTemplates.FLAT_ITEM);
+    }
+    
     private void generateCube(SLBlockModelGenerators blocks, Block block) {
         blocks.blockStateOutput.accept(SLBlockModelGenerators.createSimpleBlock(block, SLBlockModelGenerators.plainVariant(LXModelProvider.CUBE.create(block, blocks.modelOutput))));
     }
-
+    
     private void generateSlab(SLBlockModelGenerators blocks, Block slab, Block fullBlock) {
         Identifier bottomModel = LXModelProvider.SLAB.create(slab, blocks.modelOutput);
         Identifier topModel = LXModelProvider.SLAB_TOP.create(slab, blocks.modelOutput);
@@ -279,7 +280,7 @@ public class LXModelProvider extends SLModelProvider {
                 SLBlockModelGenerators.plainVariant(fullBlockModel)
         ));
     }
-
+    
     private void generateStairs(SLBlockModelGenerators blocks, Block stairs) {
         Identifier innerModel = LXModelProvider.STAIRS_INNER.create(stairs, blocks.modelOutput);
         Identifier straightModel = LXModelProvider.STAIRS.create(stairs, blocks.modelOutput);
@@ -291,7 +292,7 @@ public class LXModelProvider extends SLModelProvider {
                 SLBlockModelGenerators.plainVariant(outerModel)
         ));
     }
-
+    
     private void generatePressurePlate(SLBlockModelGenerators blocks, Block pressurePlate) {
         Identifier upModel = LXModelProvider.PRESSURE_PLATE.create(pressurePlate, blocks.modelOutput);
         Identifier downModel = LXModelProvider.PRESSURE_PLATE_DOWN.create(pressurePlate, blocks.modelOutput);
@@ -301,7 +302,7 @@ public class LXModelProvider extends SLModelProvider {
                 SLBlockModelGenerators.plainVariant(downModel)
         ));
     }
-
+    
     private void generateButton(SLBlockModelGenerators blocks, Block button) {
         Identifier buttonModel = LXModelProvider.BUTTON.create(button, blocks.modelOutput);
         Identifier pressedModel = LXModelProvider.BUTTON_PRESSED.create(button, blocks.modelOutput);
@@ -313,7 +314,7 @@ public class LXModelProvider extends SLModelProvider {
         ));
         this.generateBlockItem(blocks, button, inventoryModel);
     }
-
+    
     private void generateWall(SLBlockModelGenerators blocks, Block wall) {
         Identifier postModel = LXModelProvider.WALL_POST.create(wall, blocks.modelOutput);
         Identifier sideModel = LXModelProvider.WALL_SIDE.create(wall, blocks.modelOutput);
@@ -327,7 +328,7 @@ public class LXModelProvider extends SLModelProvider {
         ));
         this.generateBlockItem(blocks, wall, inventoryModel);
     }
-
+    
     private void generateBlockItem(SLBlockModelGenerators blocks, Block block, Identifier modelLocation) {
         blocks.itemModelOutput.accept(block.asItem(), ItemModelUtils.plainModel(modelLocation));
     }

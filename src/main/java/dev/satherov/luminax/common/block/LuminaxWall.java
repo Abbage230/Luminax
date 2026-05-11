@@ -11,11 +11,8 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.EntityBlock;
 import net.minecraft.world.level.block.WallBlock;
-import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
@@ -81,7 +78,7 @@ public class LuminaxWall extends WallBlock implements SLEntityBlock<LuminaxBlock
     public BlockState getStateForPlacement(BlockPlaceContext context) {
         return LuminaxHolder.super.getStateForPlacement(context, super.getStateForPlacement(context));
     }
-  
+    
     @Override
     public int getLightBlock(BlockState state, BlockGetter level) {
         return LuminaxHolder.super.getLightBlock(state, level);

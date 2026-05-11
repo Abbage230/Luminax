@@ -22,6 +22,10 @@ public record SetColorPayload(int color) implements SLPayload<SetColorPayload> {
     
     private static final StreamCodec<RegistryFriendlyByteBuf, SetColorPayload> STREAM_CODEC = SLPayload.codec(SetColorPayload::encode, SetColorPayload::new);
     
+    private SetColorPayload(RegistryFriendlyByteBuf buf) {
+        this(buf.readInt());
+    }
+    
     @Override
     public Type<SetColorPayload> type() {
         return SetColorPayload.TYPE;
@@ -30,10 +34,6 @@ public record SetColorPayload(int color) implements SLPayload<SetColorPayload> {
     @Override
     public void encode(RegistryFriendlyByteBuf buf) {
         buf.writeInt(this.color);
-    }
-    
-    private SetColorPayload(RegistryFriendlyByteBuf buf) {
-        this(buf.readInt());
     }
     
     public static final class Provider implements ServerPayloadProvider<SetColorPayload> {

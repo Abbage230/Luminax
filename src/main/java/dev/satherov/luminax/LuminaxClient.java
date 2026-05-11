@@ -37,21 +37,6 @@ import java.util.List;
 public class LuminaxClient {
     
     public static final SLKeybindManager KEYBINDS = SLKeybindManager.create(Luminax.MOD_ID, Luminax.id("default"));
-    
-    private static final List<BlockTintSource> LUMINAX_BLOCK_TINT = List.of(new BlockTintSource() {
-        
-        @Override
-        public int color(BlockState state) {
-            return ARGB.opaque(0xFFFFFF);
-        }
-        
-        @Override
-        public int colorInWorld(BlockState state, BlockAndTintGetter level, BlockPos pos) {
-            LuminaxBlockEntity entity = LXRegistry.BLOCK_ENTITY.get().getBlockEntity(level, pos);
-            return ARGB.opaque(entity != null ? entity.getColor() : 0xFFFFFF);
-        }
-    });
-    
     public static final KeyMapping TOGGLE_GLOWING = LuminaxClient.KEYBINDS.add(LXLanguage.KEY_TOGGLE_GLOWING, GLFW.GLFW_KEY_X, event -> {
         final Minecraft mc = Minecraft.getInstance();
         final Player player = mc.player;
@@ -66,7 +51,6 @@ public class LuminaxClient {
             ClientPacketDistributor.sendToServer(new ToggleGlowing(enabled));
         }
     });
-    
     public static final KeyMapping OPEN_COLOR_PICKER = LuminaxClient.KEYBINDS.add(LXLanguage.KEY_OPEN_COLOR_PICKER, GLFW.GLFW_KEY_V, event -> {
         final Minecraft mc = Minecraft.getInstance();
         final Player player = mc.player;
@@ -78,6 +62,19 @@ public class LuminaxClient {
         if (event.getAction() == GLFW.GLFW_PRESS) {
             if (mc.screen instanceof LXColorScreen) mc.setScreen(null);
             else mc.setScreen(new LXColorScreen(stack));
+        }
+    });
+    private static final List<BlockTintSource> LUMINAX_BLOCK_TINT = List.of(new BlockTintSource() {
+        
+        @Override
+        public int color(BlockState state) {
+            return ARGB.opaque(0xFFFFFF);
+        }
+        
+        @Override
+        public int colorInWorld(BlockState state, BlockAndTintGetter level, BlockPos pos) {
+            LuminaxBlockEntity entity = LXRegistry.BLOCK_ENTITY.get().getBlockEntity(level, pos);
+            return ARGB.opaque(entity != null ? entity.getColor() : 0xFFFFFF);
         }
     });
     

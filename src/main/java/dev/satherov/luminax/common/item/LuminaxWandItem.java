@@ -1,7 +1,7 @@
 package dev.satherov.luminax.common.item;
 
-import dev.satherov.luminax.common.block.LuminaxHolder;
 import dev.satherov.luminax.common.block.LuminaxBlockEntity;
+import dev.satherov.luminax.common.block.LuminaxHolder;
 import dev.satherov.luminax.core.LXProperties;
 import dev.satherov.luminax.core.LXRegistry;
 import dev.satherov.sathlib.common.item.SLItem;
@@ -40,6 +40,15 @@ public class LuminaxWandItem extends SLItem {
         return ItemStack.EMPTY;
     }
     
+    private static boolean updateBlock(ServerLevel level, ItemStack stack, BlockPos pos, BlockState state) {
+        final LuminaxBlockEntity entity = LXRegistry.BLOCK_ENTITY.get().getBlockEntity(level, pos);
+        if (!(state.getBlock() instanceof LuminaxHolder) || entity == null) return false;
+        
+        BlockState updated = LXProperties.CONTAINER.applyToBlock(stack, state, entity).state();
+        level.setBlockAndUpdate(pos, updated);
+        return true;
+    }
+    
     @Override
     public void appendHoverText(ItemStack stack, TooltipContext context, TooltipDisplay display, Consumer<Component> builder, TooltipFlag flag) {
         LXProperties.CONTAINER.forEach(property -> builder.accept(SLComponent.empty()
@@ -56,14 +65,5 @@ public class LuminaxWandItem extends SLItem {
         final BlockPos blockPos = context.getClickedPos();
         final BlockState blockState = level.getBlockState(blockPos);
         return LuminaxWandItem.updateBlock(level, stack, blockPos, blockState) ? InteractionResult.SUCCESS_SERVER : InteractionResult.FAIL;
-    }
-    
-    private static boolean updateBlock(ServerLevel level, ItemStack stack, BlockPos pos, BlockState state) {
-        final LuminaxBlockEntity entity = LXRegistry.BLOCK_ENTITY.get().getBlockEntity(level, pos);
-        if (!(state.getBlock() instanceof LuminaxHolder) || entity == null) return false;
-        
-        BlockState updated = LXProperties.CONTAINER.applyToBlock(stack, state, entity).state();
-        level.setBlockAndUpdate(pos, updated);
-        return true;
     }
 }

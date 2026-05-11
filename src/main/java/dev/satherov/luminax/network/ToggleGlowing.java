@@ -25,6 +25,10 @@ public record ToggleGlowing(boolean enabled) implements SLPayload<ToggleGlowing>
     
     private static final StreamCodec<RegistryFriendlyByteBuf, ToggleGlowing> STREAM_CODEC = SLPayload.codec(ToggleGlowing::encode, ToggleGlowing::new);
     
+    private ToggleGlowing(RegistryFriendlyByteBuf buf) {
+        this(buf.readBoolean());
+    }
+    
     @Override
     public Type<ToggleGlowing> type() {
         return ToggleGlowing.TYPE;
@@ -33,10 +37,6 @@ public record ToggleGlowing(boolean enabled) implements SLPayload<ToggleGlowing>
     @Override
     public void encode(RegistryFriendlyByteBuf buf) {
         buf.writeBoolean(this.enabled);
-    }
-    
-    private ToggleGlowing(RegistryFriendlyByteBuf buf) {
-        this(buf.readBoolean());
     }
     
     public static final class Provider implements ServerPayloadProvider<ToggleGlowing> {
