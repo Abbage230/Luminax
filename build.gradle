@@ -89,6 +89,9 @@ repositories {
     maven { // Jade
         url "https://api.modrinth.com/maven"
     }
+    maven { // Sathlib
+        url 'https://maven.satherov.dev/releases'
+    }
 }
 
 dependencies {
